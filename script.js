@@ -151,7 +151,7 @@
 
 // slice() vs splice()
 
-// // 1. slice
+// // // 1. slice
 // let fruits = ["Apple", "Banana", "Mango", "Orange"];
 // let result = fruits.slice(1,3);
 // console.log(result);
@@ -162,5 +162,29 @@
 // let result = fruits.splice(1,2);
 // console.log(result);
 // console.log(fruits);
+
+//concatenation in JS
+
+// using +
+// let firstName = "Yabesh";
+// let lastName = "Chaudhary";
+// let fullName = firstName + " " + lastName;
+// console.log(fullName);
+
+// // concatenating strings and numbers
+// let name = "John";
+// let age = 20;
+// console.log(name + " is " + age + " years old");
+
+// // using concat()
+// let first = "Hello";
+// let second = "World";
+// let result = first.concat(" ", second);
+// console.log(result);
+
+// using template literals
+let name = "John";
+let age = 20;
+console.log(`${name} is ${age} years old`);
 
 
