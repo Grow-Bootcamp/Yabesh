@@ -35,7 +35,6 @@
     
   // }
 
-
 // // for loop
 // for (let i=0; i<5; i++) {
 //   console.log(i);
@@ -48,6 +47,21 @@
 //   }
 //   console.log();
 // }
+
+// // while loop
+// let i=0;
+// while(i<5) {
+//   console.log("Number : " + i); // String result
+//   console.log("Number : " , i); // String and Number as separate values
+//   i++;
+// }
+
+// // do-while loop
+// let i=0;
+// do {
+//   console.log(i);
+//   i++;
+// } while (i<5);
 
 // // ternary operator
 // let age = 20;
@@ -95,7 +109,58 @@
 // // console.log(text.slice(1,5));
 // // console.log(text.slice(-6));
 
+// // substring()
+// let text = "JavaScript";
+// console.log(text.substring(1,6));
+// console.log(text.substring(-2,6));
+
+// // split()
+// let fruits = "Apple Banana Mango";
+// let result = fruits.split(" ");
+// console.log(result);
+
+// // replace()
+// let text = "I like Java";
+// let result = text.replace("Java", "JavaScript");
+// console.log(result);
+// console.log(text);
+
+// // trim()
+// let text = "      Hello  World  ";
+// console.log(text.trim());
 
 
+// splice() 
+
+// // 1. remove elements
+// let fruits = ["Apple", "Banana", "Mango", "Orange"];
+// fruits.splice(1,2);
+// console.log(fruits);
+
+// // 2. add elements
+// let fruits = ["Apple", "Mango"];
+// fruits.splice(1,0, "Banana");
+// console.log(fruits);
+
+
+// // 3.replace elements
+// let fruits = ["Apple", "Banana", "Mango"];
+// fruits.splice(1,1, "Orange");
+// console.log(fruits);
+
+
+// slice() vs splice()
+
+// // 1. slice
+// let fruits = ["Apple", "Banana", "Mango", "Orange"];
+// let result = fruits.slice(1,3);
+// console.log(result);
+// console.log(fruits);
+
+// // 2. splice()
+// let fruits = ["Apple", "Banana", "Mango", "orange"];
+// let result = fruits.splice(1,2);
+// console.log(result);
+// console.log(fruits);
 
 
