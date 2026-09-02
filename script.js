@@ -86,10 +86,15 @@
 // });
 // console.log(result);
 
-let text = "Hello World";
-// console.log(text);
+// let text = "Hello World";
+// // console.log(text);
 
-console.log(text.length);
+// console.log(text.length);
+
+// let text = "JavaScript";
+// // console.log(text.slice(1,5));
+// // console.log(text.slice(-6));
+
 
 
 
