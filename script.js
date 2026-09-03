@@ -115,8 +115,8 @@
 // console.log(text.substring(-2,6));
 
 // // split()
-// let fruits = "Apple Banana Mango";
-// let result = fruits.split(" ");
+// let text = "Apple  Banana Mango";
+// let result = text.split(" ");
 // console.log(result);
 
 // // replace()
@@ -248,5 +248,59 @@
 // ((name) => {
 //   console.log("Hello " + name);
 // })("Yabesh");
+
+
+// // JavaScript Objects
+
+// const student = {
+//   name: "Yabesh",
+//   age: 22,
+//   course: "CSIT"
+// };
+// // console.log(student);
+
+// // access object properties using dot notation
+// console.log(student.name);
+
+// // access object properties using bracket notation
+// console.log(student["age"]);
+
+
+// // Object.keys
+// console.log(Object.keys(student));
+
+// // Object.values
+// console.log(Object.values(student));
+
+// // Object.entries
+// console.log(Object.entries(student));
+
+
+
+
+// // // Object.assign
+// const student = {
+//   name: "Yabesh"
+// };
+
+// const details = {
+//   age:22,
+//   course: "CSIT"
+// };
+
+// Object.assign(student, details);
+// console.log(student);
+
+
+// // // Object.hasOwn()
+// const student = {
+//   name: "Yabesh",
+//   age: 22
+// };
+// console.log(Object.hasOwn(student, "name"));
+// console.log(Object.hasOwn(student, "address"));
+
+// console.log(typeof Object.hasOwn(student, "name"));
+
 
 
