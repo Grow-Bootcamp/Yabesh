@@ -182,9 +182,71 @@
 // let result = first.concat(" ", second);
 // console.log(result);
 
-// using template literals
-let name = "John";
-let age = 20;
-console.log(`${name} is ${age} years old`);
+// // using template literals
+// let name = "John";
+// let age = 20;
+// console.log(`${name} is ${age} years old`);
+
+// // 1. regular function
+// function greet (name ) {
+//   console.log("Hello " + name);
+// }
+// greet("Yabesh");
+
+
+// // 2. function expression
+// const greet = function (name) {
+//   console.log("Hello " + name);
+// };
+// greet("Yabesh");
+
+// // 3. anonymous function
+// setTimeout(function() {
+//   console.log("Hello after 2 seconds");
+// }, 2000);
+
+// 4. arrow functions
+// a.
+// const add = (a,b) => {
+//   return a+b;
+// };
+// console.log(add(5,2));
+
+// // b. shorter
+// const add = (a,b) => a+b;
+// console.log(add(5,3));
+
+// // c. one parameter
+// const square = n => n*n;
+// console.log(square(5));
+
+// // 5. IIFE
+// (function() {
+//   console.log("IIFE Executed");
+// })();
+
+// // arrow IIFE
+// (() => {
+//   console.log("Arrow IIFE");
+// })();
+
+
+// // conversion regular -> arrow -> IIFE
+// // 1. regular
+// function greet (name) {
+//   console.log("Hello " + name);
+// }
+// greet("Yabesh");
+
+// // 2. arrow
+// const greet = (name) => {
+//   console.log("Hello " + name);
+// };
+// greet("Prabhat");
+
+// // 3. IIFE
+// ((name) => {
+//   console.log("Hello " + name);
+// })("Yabesh");
 
 
