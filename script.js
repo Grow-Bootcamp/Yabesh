@@ -304,3 +304,116 @@
 
 
 
+// // JavaScript Arrays
+
+// // access elements
+// const fruits = ['Apple', 'Banana', 'Mango'];
+// console.log(fruits[1]);
+
+
+// // 1. push()
+// let letters = ['A', 'B', 'C'];
+// letters.push('E');
+// console.log(letters);
+
+
+// // // 2. pop()
+// let letters = ['A', 'B', 'C'];
+// letters.pop();
+// console.log(letters);
+
+
+// // 3. map()
+// const numbers = [1,2,3,4];
+// const doubled = numbers.map(function (number) {
+//     return number * 2;
+//   });
+//   console.log(doubled);
+  
+
+// const numbers = [1,2,3,4];
+// const doubled = numbers.map(number => number * 2);
+// console.log(doubled);
+// console.log(numbers);
+
+
+// // // 4. filter()
+// const numbers = [1,2,3,4,5,6,7,8,9,10];
+// const evenNumbers = numbers.filter(number => number%2 === 0);
+// console.log(evenNumbers); 
+
+
+// // // 5. reduce()
+// const numbers = [1,2,3,4,5];
+// const total = numbers.reduce((sum, number) => {
+//   return sum + number;
+// }, 0);
+// console.log(total);
+
+
+// // 6. forEach()
+// const fruits = ["Apple", "Banana", "Mango"];
+
+// fruits.forEach(function(fruit) {
+//   console.log(fruit);
+// });
+
+// fruits.forEach(fruit => console.log(fruit));
+
+
+// // 7. unshift()
+// let letters = ['b', 'c'];
+// letters.unshift('a');
+// console.log(letters);
+
+
+// // 8. shift()
+// let letters = ['a', 'b', 'c'];
+// letters.shift();
+// console.log(letters);
+
+
+// // 9. findIndex()
+// let numbers = [10, 20, 30, 40, 50];
+// let index = numbers.findIndex(num => num > 40);
+// console.log(index);
+
+
+// // 10. indexOf()
+// let numbers = [10, 20, 30, 40, 50];
+// console.log(numbers.indexOf(40));
+
+
+// // 11. sort()
+// let numbers = [30, 20, 40, 50, 10];
+// numbers.sort();
+// console.log(numbers);
+
+// // 12. reverse()
+// let numbers = [10, 20, 30, 40, 50];
+// numbers.reverse();
+// console.log(numbers);
+
+
+// // 13. join()
+// let fruits = ["Apple", "banana", "Mango"];
+// let result = fruits.join(", ");
+// console.log(result);
+
+
+// // 14. concat()
+// let a = [1, 2]; let b = [3, 4];
+// let result = a. concat(b);
+// console.log(result);
+
+
+// // 15. some()
+// let numbers = [1,3,5,8,9];
+// const result = numbers.some(num => num%2 === 0);
+// console.log(result);
+
+
+// // 16. every()
+let  numbers = [2,4,6,8];
+const result = numbers.every(num => num%2 === 0);
+console.log(result);
