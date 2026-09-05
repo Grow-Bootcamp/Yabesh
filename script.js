@@ -334,3 +334,154 @@
 //   return numbers.reduce((sum,num) => sum+num, 0);
 // }
 // console.log(add(10,20,30));
+
+
+// // Collection in JS
+
+// // Set
+// let numbers = new Set([1,5,3,4,3]);
+// console.log(numbers);
+
+// // // add();
+// const numbers = new Set();
+// numbers.add(10);
+// numbers.add(20);
+// console.log(numbers);
+
+// numbers.add(10);
+// console.log(numbers);
+
+// // has()
+// const letters = new Set('a', 'b', "c");
+// console.log(letters.has('a'));
+// console.log(letters.has('d'));
+
+// // delete()
+// const letters = new Set(['a', 'b', 'c']);
+// letters.delete('b');
+// console.log(letters);
+
+// // size
+// const letters = new Set(['a', 'b', 'c']);
+// console.log(letters.size);
+
+// // clear()
+// const letters = new Set(['a', 'b', 'c']);
+// letters.clear();
+// console.log(letters);
+
+
+
+// // Map
+// let user = new Map();
+// user.set("name", "John");
+// user.set("age", 20);
+// console.log(user.get("age"));
+
+// // set()
+// const user = new Map();
+// user.set("name", "John");
+// user.set("age", 20);
+// console.log(user);
+
+// // get()
+// const user = new Map();
+// user.set("name", "John");
+// user.set("age", 20);
+// console.log(user.get("name"));
+
+// // has()
+// const user = new Map();
+// user.set("name", "John");
+// user.set("age", 20);
+// console.log(user.has("name"));
+
+// // delete()
+// const user = new Map();
+// user.set("name", "John");
+// user.set("age", 20);
+// console.log(user);
+// user.delete("age");
+// console.log(user);
+
+
+// // size
+// const user = new Map();
+// user.set("name", "John");
+// user.set("age", 20);
+// console.log(user.size);
+
+
+// // clear()
+// const user = new Map();
+// user.set("name", "John");
+// user.set("age", 20);
+// user.clear();
+// console.log(user);
+
+
+// // WeakSet
+// const weakSet = new WeakSet();
+// const user = {
+//   name: "Yabesh"
+// };
+// weakSet.add(user);
+// console.log(weakSet);
+
+// // WeakMap
+// const weakMap = new WeakMap();
+// const user = {
+//   name: "Yabesh"
+// };
+// weakMap.set(user, "Student");
+// console.log(weakMap);
+
+
+// // this keyword
+
+// console.log(this); // output is {}
+
+// // inside an object method
+
+// const person = {
+//   name: "John",
+//   greet: function () {
+//     console.log(this.name);
+//   }
+// };
+// person.greet();
+
+// const person = {
+//   name: "John",
+//   greet() {
+//     console.log(this.name);
+//   }
+// };
+// person.greet();
+
+
+// regular function
+// "use strict";
+// function showThis() {
+//   console.log(this);
+// }
+// showThis(); // undefined
+
+
+// // Arrow Function
+// // Arrow function do not create their own 'this'. They inherit 'this' from their surrounding scope.
+
+// const person = {
+//   name: "John",
+//   greet: () => {
+//     console.log(this.name);
+//   }
+// };
+// person.greet(); // undefined
+
+
+
+// // cookie
+// document.cookie = "username=John";
+// console.log(document.cookie);
+
