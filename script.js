@@ -182,12 +182,306 @@
 // let result = first.concat(" ", second);
 // console.log(result);
 
-// using template literals
-let name = "John";
-let age = 20;
-console.log(`${name} is ${age} years old`);
+// // using template literals
+// let name = "John";
+// let age = 20;
+// console.log(`${name} is ${age} years old`);
 
 
-console.log("Hello World");
+// console.log("Hello World");
 
+
+
+// // Error in JS
+
+
+// // SyntaxError
+
+// let name = "Yabesh";
+// console.log(name;
+
+// try {
+//   eval("let x = ;");
+// } catch (error) {
+//   console.log(error.name);
+// }
+
+// // ReferenceError
+
+// console.log(username);
+
+// try {
+//   console.log(username);
+// } catch (error) {
+//   console.log(error.name);
+// }
+
+// // TypeError
+// let name = "John";
+// name();
+
+// let user = null;
+// console.log(user.name);
+
+
+// // // RangeError
+// let num = 10.123;
+// console.log(num.toFixed(200));
+
+// // URIError
+// decodeURIComponent("%");
+
+// // EvalError
+// throw new EvalError("problem with eval");
+
+
+
+// // // Error Handling
+
+// 1. try....catch
+
+// try {
+//   let result = undefinedVariable;
+//   console.log(result);
+// } catch (error) {
+//   console.log("Something went wrong");
+//   console.log(error.name);
+// }
+
+// try {
+//   console.log(undefinedVariable);
+// } catch (error) {
+//   console.log(error.name);
+//   console.log(error.message);
+// }
+
+
+// // 2. finally
+// try {
+//   console.log("Trying...");
+// } catch (error) {
+//   console.log("Error Occurred");
+// } finally {
+//   console.log("Finished");
+// }
+
+
+// // 3. throw
+// let age = -5;
+// try {
+//   if (age < 0) {
+//     throw new Error("Age can't be -ve");
+//   }
+// } catch (error) {
+//   console.log(error.message);
+// }
+
+
+// // shallow copy
+// // creates new outer object, but nested objects are still shared
+// const user = {
+//   name: "Yabesh",
+//   address: {
+//     city: "Dhangadhi"
+//   }
+// };
+
+// const copy = Object.assign({}, user);
+
+// copy.name = "Prabhat";
+// copy.address.city = "Attariya";
+
+// console.log(user);
+
+// // deep copy
+// // creates a complete independent copy, including nested objects and arrays
+// const user = {
+//   name: "Yabesh",
+//   address: {
+//     city: "Dhangadhi"
+//   }
+// };
+// const copy = structuredClone(user);
+// copy.address.city = "Attariya";
+// console.log(user.address.city);
+// // the original is unaffected
+
+
+// // // spread operator
+
+// const fruits = ["Apple", "Banana", "Mango"];
+// const newFruits = [...fruits, "Orange"];
+// console.log(newFruits);
+
+// const user = {
+//   name: "Yabesh",
+//   age: 22
+// };
+// const newUser = {
+//   ...user,
+//   city: "Dhangadhi"
+// };
+// console.log(newUser);
+
+// // rest operator 
+
+// function add (...numbers) {
+//   console.log(numbers);
+// }
+// add(10,20,30,40);
+
+// function add(...numbers) {
+//   return numbers.reduce((sum,num) => sum+num, 0);
+// }
+// console.log(add(10,20,30));
+
+
+// // Collection in JS
+
+// // Set
+// let numbers = new Set([1,5,3,4,3]);
+// console.log(numbers);
+
+// // // add();
+// const numbers = new Set();
+// numbers.add(10);
+// numbers.add(20);
+// console.log(numbers);
+
+// numbers.add(10);
+// console.log(numbers);
+
+// // has()
+// const letters = new Set('a', 'b', "c");
+// console.log(letters.has('a'));
+// console.log(letters.has('d'));
+
+// // delete()
+// const letters = new Set(['a', 'b', 'c']);
+// letters.delete('b');
+// console.log(letters);
+
+// // size
+// const letters = new Set(['a', 'b', 'c']);
+// console.log(letters.size);
+
+// // clear()
+// const letters = new Set(['a', 'b', 'c']);
+// letters.clear();
+// console.log(letters);
+
+
+
+// // Map
+// let user = new Map();
+// user.set("name", "John");
+// user.set("age", 20);
+// console.log(user.get("age"));
+
+// // set()
+// const user = new Map();
+// user.set("name", "John");
+// user.set("age", 20);
+// console.log(user);
+
+// // get()
+// const user = new Map();
+// user.set("name", "John");
+// user.set("age", 20);
+// console.log(user.get("name"));
+
+// // has()
+// const user = new Map();
+// user.set("name", "John");
+// user.set("age", 20);
+// console.log(user.has("name"));
+
+// // delete()
+// const user = new Map();
+// user.set("name", "John");
+// user.set("age", 20);
+// console.log(user);
+// user.delete("age");
+// console.log(user);
+
+
+// // size
+// const user = new Map();
+// user.set("name", "John");
+// user.set("age", 20);
+// console.log(user.size);
+
+
+// // clear()
+// const user = new Map();
+// user.set("name", "John");
+// user.set("age", 20);
+// user.clear();
+// console.log(user);
+
+
+// // WeakSet
+// const weakSet = new WeakSet();
+// const user = {
+//   name: "Yabesh"
+// };
+// weakSet.add(user);
+// console.log(weakSet);
+
+// // WeakMap
+// const weakMap = new WeakMap();
+// const user = {
+//   name: "Yabesh"
+// };
+// weakMap.set(user, "Student");
+// console.log(weakMap);
+
+
+// // this keyword
+
+// console.log(this); // output is {}
+
+// // inside an object method
+
+// const person = {
+//   name: "John",
+//   greet: function () {
+//     console.log(this.name);
+//   }
+// };
+// person.greet();
+
+// const person = {
+//   name: "John",
+//   greet() {
+//     console.log(this.name);
+//   }
+// };
+// person.greet();
+
+
+// regular function
+// "use strict";
+// function showThis() {
+//   console.log(this);
+// }
+// showThis(); // undefined
+
+
+// // Arrow Function
+// // Arrow function do not create their own 'this'. They inherit 'this' from their surrounding scope.
+
+// const person = {
+//   name: "John",
+//   greet: () => {
+//     console.log(this.name);
+//   }
+// };
+// person.greet(); // undefined
+
+
+
+// // cookie
+// document.cookie = "username=John";
+// console.log(document.cookie);
 
