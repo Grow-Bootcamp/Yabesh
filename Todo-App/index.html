@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Todo App</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div>
+      <header>
+        <h1>My Todo App</h1>
+        <p>Organize Your Tasks Easily</p>
+      </header>
+
+      <main>
+        <section>
+          <h3>Add a Task</h3>
+          <form>
+            <input type="text" id="task-input" placeholder="Enter a new task" />
+            <button type="submit">Add Task</button>
+          </form>
+        </section>
+
+        <section>
+          <h3><br /><br />My Tasks</h3>
+          <ul id="task-list">
+            <li class="task-item">
+              <label class="task-check">
+                <input type="checkbox" />
+                <span class="checkmark"></span>
+              </label>
+              <span class="task-text">Study CSS Box Model and do some good things like eating food, drinking water</span>
+              <div class="task-actions">
+                <button class="edit-btn" title="Edit Task">✏️</button>
+                <button class="delete-btn" title="Delete Task">🗑️</button>
+              </div>
+            </li>
+
+            <li class="task-item completed">
+              <label class="task-check">
+                <input type="checkbox" checked />
+                <span class="checkmark"></span>
+              </label>
+              <span class="task-text">Set up HTML structure</span>
+              <div class="task-actions">
+                <button class="edit-btn" title="Edit Task">✏️</button>
+                <button class="delete-btn" title="Delete Task">🗑️</button>
+              </div>
+            </li>
+
+            <li class="task-item">
+              <label class="task-check">
+                <input type="checkbox" />
+                <span class="checkmark"></span>
+              </label>
+              <span class="task-text">Practice Flexbox layout</span>
+              <div class="task-actions">
+                <button class="edit-btn" title="Edit Task">✏️</button>
+                <button class="delete-btn" title="Delete Task">🗑️</button>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </main>
+      <footer>
+        <p>&copy; 2026 My Todo App</p>
+      </footer>
+    </div>
+  </body>
+</html>
+
+
