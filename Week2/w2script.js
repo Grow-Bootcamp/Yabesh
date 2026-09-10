@@ -460,7 +460,26 @@
 
 
 
+// // caching in JS
+const cache = new Map();
 
+function getUser(id) {
+  if (cache.has(id)) {
+    console.log("Getting from cache");
+    return cache.get(id);
+  }
+
+  const user = {
+    id: id,
+    name: "Yabesh"
+  };
+
+  cache.set(id, user);
+  return user;
+}
+
+console.log(getUser(1));
+console.log(getUser(1));
 
 
 
