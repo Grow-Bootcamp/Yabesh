@@ -484,3 +484,51 @@ console.log(getUser(1));
 
 
 
+
+
+// // memoization in JS
+
+// // without memoization 
+function square(n) {
+  console.log("Calculating...");
+  return n * n;
+}
+
+console.log(square(5));
+console.log(square(5));
+
+
+// // with memoization
+function memoize(fn) {
+  const cache = new Map();
+
+  return function (n) {
+    if (cache.has(n)) {
+      console.log("Getting from cache...");
+      return cache.get(n);
+    }
+
+    console.log("Calculating...");
+    const result = fn(n);
+
+    cache.set(n, result);
+
+    return result;
+  };
+}
+
+function square(n) {
+  return n * n;
+}
+
+const memoizedSquare = memoize(square);
+
+console.log(memoizedSquare(5));
+console.log(memoizedSquare(5));
+console.log(memoizedSquare(10));
+console.log(memoizedSquare(10));
+
+
+
+
+
