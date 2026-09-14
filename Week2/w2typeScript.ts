@@ -129,3 +129,62 @@ interface Window {
   isOpen: boolean;
 }
 // Resulting type is { title: string; isOpen: boolean }
+
+
+
+// // Generics
+class Repository<T> {
+    async get(id: number): Promise<T> {}
+    async getAll(): Promise<T[]> {}
+    async create(data: T): Promise<T> {}
+    async update(id: number, data: Partial<T>): Promise<T> {}
+    async delete(id: number): Promise<void> {}
+}
+
+const userRepo = new Repository<User>();
+const productRepo = new Repository<Product>();
+
+
+
+
+// // Type Aliases
+type User1 = {
+  id: number;
+  name: string;
+  email?: string;
+  readonly createdAt: Date;
+  greet(): string;
+};
+
+// // Super Power of Type Aliases
+// Primitive aliases
+type ID = number | string;
+type Name = string;
+
+// Union types
+type Status = "pending" | "approved" | "rejected";
+type StringOrNumber = string | number;
+
+// Intersection types
+type Person = { name: string };
+type Employee = { employeeId: number };
+type Staff = Person & Employee;
+
+// Tuple
+type Point = [number, number];
+
+// Function type
+type MathOperation = (a: number, b: number) => number;
+
+// Complex combinations
+type Result<T> = { success: true; data: T } | { success: false; error: string };
+
+
+// // Alias Example
+type Identity = number | string;
+
+let id1: Identity = 123;
+let id2: Identity = "user123";
+
+console.log(id1);
+console.log(id2);
