@@ -1,22 +1,20 @@
 {
-  "name": "mongoose-crud",
+  "name": "mongodb-transaction",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --exec tsx src/server.ts"
+    "dev": "nodemon --exec tsx server.ts"
   },
   "keywords": [],
   "type": "module",
   "dependencies": {
-    "bcrypt": "^6.0.0",
-    "dotenv": "^18.0.2",
+    "dotenv": "^18.0.3",
     "express": "^5.2.1",
-    "mongoose": "^9.10.1"
+    "mongoose": "^9.10.2"
   },
   "devDependencies": {
-    "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.6",
     "@types/node": "^26.6.2",
     "nodemon": "^3.1.14",
