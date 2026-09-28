@@ -53,6 +53,7 @@ const userSchema = new Schema <IUser> (
     password: {
       type: String,
       required: [true, 'Password is required'],
+      select: false,
       validate: {
         validator: (value: string) => {
           const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,16}$/;
