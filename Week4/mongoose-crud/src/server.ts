@@ -209,38 +209,56 @@ app.post('/users/transaction', async (req: Request, res: Response) => {
   try {
     session.startTransaction();
 
-    const users = req.body.users;
+    const { users } = req.body;
 
-    for (let i=0; i<users.length; i++) {
-      const user = users[i];
-      
-      //special validation for every user
-      if (
-        typeof user.name !== 'string' ||
-        user.name.length < 3 ||
-        user.name.length > 10
-      ) {
-        await session.abortTransaction();
+    // User 1
+    await User.create(
+      [
+        {
+          ...users[0],
+        },
+      ],
+      { session }
+    );
 
-        return res.status(422).json({
-          message: `User ${i+1} name must be between 3 and 10 characters`,
-        });
-      }
-      
-      await User.create(
-        [
-          {
-            ...user,
-          },
-        ],
-        { session }
-      );
+    // User 2
+    await User.create(
+      [
+        {
+          ...users[1],
+        },
+      ],
+      { session }
+    );
+
+    // User 3
+    const thirdUserName = users[2].name;
+
+    if (typeof thirdUserName !== 'string' || 
+      thirdUserName.length < 3 ||
+      thirdUserName.length > 10
+    ) {
+      await session.abortTransaction();
+
+      return res.status(422).json({
+        message: "Third user name must be between 3 and 10 characters",
+      });
     }
 
+    await User.create(
+      [
+        {
+          ...users[2],
+        },
+      ],
+      { session }
+    );
+
+    // all succeeded
     await session.commitTransaction();
 
-    res.status(200).json({
-      message: `${users.length} users created successfully`,
+    res.status(201).json({
+      message: `All users created successfully`,
     });
   } catch (error: any) {
     await session.abortTransaction();
