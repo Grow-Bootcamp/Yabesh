@@ -5,6 +5,7 @@ interface IPost {
   title: string;
   content: string;
   author: Types.ObjectId;
+  comments: Types.ObjectId[];
 }
 
 const postSchema = new Schema<IPost> (
@@ -24,9 +25,16 @@ const postSchema = new Schema<IPost> (
       ref: "Author",
       required: true,
     },
+
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Comment",
+
+      },
+    ],
   },
   {
-
     timestamps: true,
   }
 );
