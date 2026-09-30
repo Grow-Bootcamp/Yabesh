@@ -36,9 +36,9 @@ app.post('/users', async (req: Request, res: Response) => {
 
 // // GET USERS
 
-app.get('/', (req:Request, res:Response) => [
-  res.send("This is dashboard")
-]);
+app.get('/', (req:Request, res:Response) => {
+  res.send("This is dashboard");
+});
 
 app.get('/users', async (req: Request, res: Response) => {
   try {

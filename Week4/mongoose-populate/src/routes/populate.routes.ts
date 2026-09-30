@@ -37,4 +37,37 @@ router.post('/posts', async (req: Request, res: Response) => {
   }
 });
 
+router.get('/posts', async(_req: Request, res: Response) => {
+  try {
+    const posts = await Post.find().populate("author");
+
+    res.status(200).json(posts);
+  } catch (error: any) {
+    res.status(500).json({
+      message: "Failed to retrieve posts",
+      error,
+    });
+  }
+});
+
+router.get('/posts/:id', async (req: Request, res:Response) => {
+  try {
+    const post = await Post.findById(req.params.id).populate("author");
+    // const post = await Post.findById(req.params.id).populate("author", "name email");
+    
+    if (!post) {
+      return res.status(404).json({
+        message: "Post not found",
+      });
+    }
+
+    res.status(200).json(post);
+  } catch (error: any) {
+    res.status(500).json({
+      message: "Failed to retrieve post",
+      error,
+    });
+  }
+}); 
+
 export default router;
