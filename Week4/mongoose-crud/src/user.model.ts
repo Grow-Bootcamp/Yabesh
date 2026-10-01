@@ -45,8 +45,8 @@ const userSchema = new Schema <IUser> (
       lowercase: true,
       trim: true,
       match: [
-        /^[A-Za-z][A-Za-z0-9._%+-]*@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
-        'Email must start with a letter and have a valid email structure'
+        /^[A-Za-z0-9._%+-]*@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
+        'Email must have a valid email structure'
       ],
     },
 
