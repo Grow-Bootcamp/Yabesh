@@ -1,0 +1,94 @@
+Week 5
+
+
+
+Day 1
+Description
+Get introduced to MySQL as a relational database and learn the principles of relational data modeling,
+normalization, and schema design.
+
+Scope
+● Recap SQL vs. NoSQL and identify scenarios favoring a relational database.
+● Get introduced to MySQL - installation, structure, and basic usage.
+● Study relational data modeling and normalization (1NF, 2NF, 3NF).
+● Study schema design and constraints (primary key, foreign key, unique, not null).
+
+Acceptance Criteria
+● Can install/set up MySQL and connect to it successfully.
+● Can design a normalized relational schema for a sample use case.
+● Can define tables with appropriate constraints (primary key, foreign key, unique, not null).
+
+
+
+
+Day 2
+Description
+Learn how to model and query relationships between tables in MySQL, and understand MySQL's datatype
+system.
+
+Scope
+● Study one-to-one, one-to-many, and many-to-many relationships in MySQL.
+● Study SQL joins (inner, left, right, full) and when to use each.
+● Study datatypes and numeric data concepts in MySQL.
+● Document the day's key learnings, findings, and code snippets in a dedicated learning-log file
+(Markdown/Doc) and commit it to the repository.
+● Raise a GitHub Pull Request for the day's practice code/work and send it to your mentor for review.
+
+Acceptance Criteria
+● Can design and query a many-to-many relationship using a junction table.
+● Can write queries using inner, left, and right joins with correct results.
+● Can select appropriate MySQL datatypes for a given set of fields.
+
+
+
+
+Day 3
+Description
+Learn how to interact with MySQL using an ORM, covering CRUD operations, schema definition, and
+database migrations.
+
+Scope
+● Study MySQL with Sequelize (or equivalent ORM): setup and configuration.
+● Study CRUD operations using the ORM.
+● Study schema design and validation using the ORM.
+● Study migrations and seeders.
+
+Acceptance Criteria
+● Can perform CRUD operations on a MySQL table using Sequelize models.
+● Can define model-level validation rules.
+● Can create and run a migration and a seeder script successfully.
+
+
+
+
+Day 4
+
+Description
+Understand how ACID principles and transactions apply in MySQL, and learn the basics of indexing for
+query performance.
+
+Scope
+● Study ACID principles and their implementation in MySQL.
+● Study the concept of transactions in MySQL (COMMIT, ROLLBACK).
+● Study indexing concepts and their impact on query performance.
+
+Acceptance Criteria
+● Can explain how MySQL enforces ACID compliance.
+● Can implement a transaction that commits or rolls back based on a condition.
+● Can create an index on a table and explain its effect on query performance.
+
+
+
+Day 5
+
+Description
+Master advanced SQL querying techniques including filtering, pagination, sorting, grouping, and aggregate
+functions. Conclude the week by presenting a summary of Days 1-4 to your mentor.
+
+Scope
+● Study filtering, pagination, and sorting techniques in SQL queries.
+● Study grouping (GROUP BY, HAVING) and aggregate functions (COUNT, SUM, AVG, MIN, MAX).
+
+Acceptance Criteria
+● Can write a SQL query that filters, paginates (LIMIT/OFFSET), and sorts results.
+● Can write a query using GROUP BY, HAVING, and at least 3 aggregate functions.

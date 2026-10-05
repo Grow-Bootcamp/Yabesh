@@ -1,0 +1,18 @@
+{
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^22.20.4",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "express-validator": "^7.3.2",
+    "joi": "^18.2.9",
+    "mongoose": "^9.10.2",
+    "morgan": "^1.12.1",
+    "winston": "^3.19.0"
+  }
+}
