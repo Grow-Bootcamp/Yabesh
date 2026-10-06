@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Build artifacts
+dist/
+build/
+out/
+
+# Logs
+*.log
+logs/
+
+# Environment & secrets
+.env
+.env.local
+secrets.json
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~   
+
+
+npm-debug.log*
+yarn-error.log
+dist/   
