@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --exec tsx src/app.ts",
     "typeorm": "tsx ./node_modules/typeorm/cli.js",
+    "seed": "tsx src/seeders/user.seeder.ts",
 
     "migration:create": "npm run typeorm -- migration:create",
     "migration:generate": "npm run typeorm -- migration:generate",
