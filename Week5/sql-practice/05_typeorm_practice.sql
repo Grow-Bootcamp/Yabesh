@@ -1,0 +1,5 @@
+CREATE DATABASE typeorm_practice;
+
+SHOW DATABASES;
+
+

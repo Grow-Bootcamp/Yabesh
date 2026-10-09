@@ -82,8 +82,7 @@ Acceptance Criteria
 Day 5
 
 Description
-Master advanced SQL querying techniques including filtering, pagination, sorting, grouping, and aggregate
-functions. Conclude the week by presenting a summary of Days 1-4 to your mentor.
+Master advanced SQL querying techniques including filtering, pagination, sorting, grouping, and aggregatefunctions.
 
 Scope
 ● Study filtering, pagination, and sorting techniques in SQL queries.
