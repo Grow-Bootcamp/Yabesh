@@ -1,7 +1,6 @@
 import type { Request, Response } from 'express';
 import { validate } from 'class-validator';
-import { AppDataSource } from '../data-source.js';
-import { User } from '../entities/User.js';
+import { userRepository } from '../repositories/user.repository.js';
 
 // home page
 export const homePage = (_req: Request, res: Response) => {
@@ -11,8 +10,6 @@ export const homePage = (_req: Request, res: Response) => {
 // create users
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const userRepository = AppDataSource.getRepository(User);
-
     const user = userRepository.create(req.body);
 
     const errors = await validate(user);
@@ -37,8 +34,6 @@ export const createUser = async (req: Request, res: Response) => {
 // get users
 export const getUsers = async (_req: Request, res: Response) => {
   try {
-    const userRepository = AppDataSource.getRepository(User);
-
     const users = await userRepository.find();
 
     res.status(200).json(users);
@@ -52,8 +47,6 @@ export const getUsers = async (_req: Request, res: Response) => {
 // get one user
 export const getUserById = async (req: Request, res: Response) => {
   try {
-    const userRepository = AppDataSource.getRepository(User);
-
     const user = await userRepository.findOneBy({
       id: Number(req.params.id),
     });
@@ -75,8 +68,6 @@ export const getUserById = async (req: Request, res: Response) => {
 //update user
 export const updateUser = async (req: Request, res: Response) => {
   try {
-    const userRepository = AppDataSource.getRepository(User);
-
     const user = await userRepository.findOneBy({
       id: Number(req.params.id),
     });
@@ -111,8 +102,6 @@ export const updateUser = async (req: Request, res: Response) => {
 // delete user
 export const deleteUser = async (req: Request, res: Response) => {
   try {
-    const userRepository = AppDataSource.getRepository(User);
-
     const user = await userRepository.findOneBy({
       id: Number(req.params.id),
     });
