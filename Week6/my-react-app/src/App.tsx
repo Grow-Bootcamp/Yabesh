@@ -1,24 +1,28 @@
+import { useState } from 'react';
+import ClockFunction from './components/ClockFunction';
 import Counter from './components/Counter';
 import FruitItem from './components/FruitItem';
 import Greeting from './components/Greeting';
 import NameBox from './components/NameBox';
+import TitleCounter from './components/TitleCounter';
+import UserList from './components/UserList';
 import UserProfile from './components/UserProfile';
 import { useFruits } from './hooks/useFruits';
 
 function App() {
   // return <h1>Hello, Yabesh!</h1>
-
+  
   const name = 'Yabesh';
   const age = 22;
   const isMember = true;
-
+  
   // for .map()
   const students = [
     { id: 1, name: "Aasha", city: "Kathmandu" },
     { id: 2, name: "Ravi", city: "Pokhara" },
     { id: 3, name: "Mina", city: "Lalitpur" },
   ];
-
+  
   const {
     fruits,
     newFruit,
@@ -27,6 +31,8 @@ function App() {
     removeFruit,
   } = useFruits();
   
+  const [showTimer, setShowTimer] = useState(true);
+
   return (
     <>
       <h1>Hello, {name}!</h1>
@@ -103,10 +109,23 @@ function App() {
 
       <br />
       <br />
+      <h1>Lifecycle: Functional Component</h1>
+      <button onClick={() => setShowTimer(!showTimer)}>
+        {showTimer ? 'Hide Timer' : 'Show Timer'}
+      </button>
+      {showTimer && <ClockFunction />}
+
+
       <br />
       <br />
+      <h1>Title Counter</h1>
+      <TitleCounter />
+
+
       <br />
       <br />
+      <h1>Fetch API with useEffect</h1>
+      <UserList />
 
     </>
   );

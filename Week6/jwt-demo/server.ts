@@ -96,28 +96,26 @@ app.post('/login', (req: Request, res: Response) => {
 });
 
 // security middleware: validates the JWT
-function protect (req: Request, res: Response, next: NextFunction): void {
+function protect (req: Request, res: Response, next: NextFunction) {
   const header = req.headers.authorization;
 
   // expect: authorization: bearer <token>
-  if (!header || !header.startsWith('Bearer ')) {
-    res.status(401).json({
+  if (!header?.startsWith('Bearer ')) {
+    return res.status(401).json({
       message: 'No token. Please log in first.',
     });
-    return; 
   }
   
   const token = header.split(' ')[1];
 
   if (!token) {
-    res.status(401).json({
+    return res.status(401).json({
       message: 'No token. Please log in first.',
     });
-    return;
   }
 
   try {
-    const decoded = jwt.verify(token, JWT_SECRET ) as TokenPayload;
+    const decoded = jwt.verify(token, JWT_SECRET! ) as TokenPayload;
 
     req.user = decoded;
 
