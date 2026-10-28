@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { login } from '../services/authService';
 
-function Login() {
+interface LoginProps {
+  onLogin: () => void;
+}
+
+function Login({ onLogin }: LoginProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -18,7 +22,7 @@ function Login() {
       localStorage.setItem('token', data.token);
       localStorage.setItem('user', JSON.stringify(data.user));
 
-      setMessage(`Welcome, ${data.user.name}!`);
+      onLogin();
     } catch (error) {
       setMessage (
         error instanceof Error ? error.message : 'Login failed'
