@@ -1,26 +1,57 @@
 const API_URL = 'http://localhost:3000/api';
 
-export async function getProfile() {
-  const token = localStorage.getItem('token');
+async function refreshAccessToken(): Promise<string> {
+  const response = await fetch(`${API_URL}/auth/refresh`, {
+    method: 'POST',
+    credentials: 'include',
+  });
+
+  if (!response.ok) {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+
+    throw new Error('Your session has expired. Please log in again');
+  }
+
+  const data = await response.json();
+  const newToken = data.token as string;
+
+  localStorage.setItem('token', newToken);
+
+  return newToken;
+}
+
+async function authenticatedFetch(url: string): Promise<Response> {
+  let token = localStorage.getItem('token');
 
   if (!token) {
     throw new Error('Please log in to continue');
   }
 
-  const response = await fetch(`${API_URL}/protected/profile`, {
+  let response = await fetch(url, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
 
-  const data = await response.json();
-
+  // if the access token expired, refresh it and retry once
   if (response.status === 401) {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    token = await refreshAccessToken();
 
-    throw new Error('Your session expired. Please log in again');
+    response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   }
+
+  return response;
+} 
+
+export async function getProfile() {
+  const response = await authenticatedFetch(`${API_URL}/protected/profile`);
+
+  const data = await response.json();
 
   if (!response.ok) {
     throw new Error(data.message || 'Failed to fetch profile');
@@ -30,26 +61,9 @@ export async function getProfile() {
 }
 
 export async function getAdminData() {
-  const token = localStorage.getItem('token');
-
-  if (!token) {
-    throw new Error('Please log in first');
-  }
-
-  const response = await fetch(`${API_URL}/protected/admin`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const response = await authenticatedFetch(`${API_URL}/protected/admin`);
 
   const data = await response.json();
-
-  if (response.status === 401) {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-
-    throw new Error('Your session expired. Please log in again');
-  }
 
   if (!response.ok) {
     throw new Error(data.message || 'Access denied');
@@ -57,5 +71,3 @@ export async function getAdminData() {
 
   return data;
 }
-
-// It sends the JWT in the Authorization header. Your backend middleware verifies the token before returning protected data.
