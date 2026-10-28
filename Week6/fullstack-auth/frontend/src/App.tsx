@@ -2,6 +2,7 @@ import { useState } from "react";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import AdminDashboard from "./components/AdminDashboard";
+import {logout as logoutService } from './services/authService';
 
 function App() {
   const [token, setToken] = useState(
@@ -12,11 +13,18 @@ function App() {
     localStorage.getItem('user') || ('null')
   ) as { role: 'user' | 'admin' } | null;
 
-  function handleLogout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    setToken(null);
-  }
+  const handleLogout = async() => {
+    try {
+      await logoutService();
+    } catch (error) {
+      console.error('Logout request failed: ', error);
+    } finally {
+      // clear local session even if the server request fails
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      setToken(null);
+    }
+  };
 
   return (
     <div>

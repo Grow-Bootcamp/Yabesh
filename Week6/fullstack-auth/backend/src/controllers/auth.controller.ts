@@ -3,9 +3,55 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
 
-const JWT_SECRET = process.env.JWT_SECRET;
+function getRequiredSecret(name: string): string {
+  const secret = process.env[name];
 
-export const login = async (req: Request, res: Response): Promise<void> => {
+  if (!secret) {
+    throw new Error(`${name} is missing from .env`)
+  }
+
+  return secret;
+}
+
+const ACCESS_TOKEN_SECRET = getRequiredSecret('JWT_SECRET');
+const REFRESH_TOKEN_SECRET = getRequiredSecret('REFRESH_TOKEN_SECRET');
+
+const ACCESS_TOKEN_EXPIRES_IN = process.env.ACCESS_TOKEN_EXPIRES_IN || '1m';
+const REFRESH_TOKEN_EXPIRES_IN = process.env.REFRESH_TOKEN_EXPIRES_IN || '7d';
+
+function generateAccessToken(user: {
+  _id: unknown;
+  email: string;
+  role: 'user' | 'admin';
+}) {
+  return jwt.sign(
+    {
+      userId: String(user._id),
+      email: user.email,
+      role: user.role,
+    },
+    ACCESS_TOKEN_SECRET,
+    { expiresIn: ACCESS_TOKEN_EXPIRES_IN as '1m' }
+  );
+}
+
+function generateRefreshToken(user: {
+  _id: unknown;
+  email: string;
+  role: 'user' | 'admin';
+}) {
+  return jwt.sign(
+    {
+      userId: String(user._id),
+      email: user.email,
+      role: user.role,
+    },
+    REFRESH_TOKEN_SECRET,
+    { expiresIn: REFRESH_TOKEN_EXPIRES_IN as '7d' }
+  );
+}
+
+export async function login (req: Request, res: Response) {
   try {
     const {email, password} = req.body as {
       email?: string;
@@ -19,50 +65,47 @@ export const login = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    if (!JWT_SECRET) {
-      res.status(500).json({
-        message: 'JWT_SECRET is not configured',
-      });
-      return;
-    }
-
-    const user = await User.findOne({
-      email: email.toLowerCase().trim(),
-    }).select('+password');
-
+    const user = await User.findOne({ email }).select('+password');
+    
     if (!user) {
-      res.status(401).json({
+      return res.status(401).json({
         message: 'Invalid email or password',
       });
-      return;
     }
 
-    const passwordMatches = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await bcrypt.compare(password, user.password);
 
-    if (!passwordMatches) {
-      res.status(401).json({
+    if (!isPasswordValid) {
+      return res.status(401).json({
         message: 'Invalid email or password',
       });
-      return;
     }
 
-    const token = jwt.sign(
-      {
-        userId: user._id.toString(),
-        email: user.email,
-        role: user.role,
-      }, 
-      JWT_SECRET,
-      {
-        expiresIn: '30m',
-      },
-    );
+    const accessToken = generateAccessToken({
+      _id: user._id,
+      email: user.email,
+      role: user.role,
+    });
 
-    res.status(200).json({
+    const refreshToken = generateRefreshToken({
+      _id: user._id,
+      email: user.email,
+      role: user.role,
+    });
+
+    res.cookie('refreshToken', refreshToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/api/auth',
+      maxAge: 7 * 24 * 60 * 60 * 1000,
+    });
+
+    return res.status(200).json({
       message: 'Login successful',
-      token,
+      token: accessToken,
       user: {
-        id: user._id.toString(),
+        id: String(user._id),
         name: user.name,
         email: user.email,
         role: user.role,
@@ -76,3 +119,95 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     });
   }
 };
+
+export async function refresh (req: Request, res: Response) {
+  try {
+    const refreshToken = req.cookies?.refreshToken as | string | undefined;
+
+    if (!refreshToken) {
+      return res.status(401).json({
+        message: 'Refresh token missing. Please log in again',
+      });
+    }
+
+    const decoded = jwt.verify(refreshToken, REFRESH_TOKEN_SECRET);
+
+    if (
+      typeof decoded === 'string' ||
+      typeof decoded.userId !== 'string'
+    ) {
+      return res.status(401).json({
+        message: 'Invalid refresh token. Please log in again',
+      });
+    }
+
+    // confirm the user still exists in the database
+    const user = await User.findById(decoded.userId);
+
+    if (!user) {
+      res.clearCookie('refreshToken', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        path: '/api/auth',
+      });
+
+      return res.status(401).json({
+        message: 'User not found. Please log in again',
+      });
+    }
+
+    // issue a fresh access token using the user's current role
+    const accessToken = generateAccessToken({
+      _id: user._id,
+      email: user.email,
+      role: user.role,
+    });
+
+    return res.status(200).json({
+      message: 'Access token refreshed successfully',
+      token: accessToken,
+      user: {
+        id: String(user._id),
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
+    });
+  } catch (error) {
+    if (
+      error instanceof jwt.TokenExpiredError ||
+      error instanceof jwt.JsonWebTokenError
+    ) {
+      res.clearCookie('refreshToken', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        path: '/api/auth',
+      });
+
+      return res.status(401).json({
+        message: 'Refresh token is invalid or expired. Please log in again'
+      });
+    }
+
+    console.error('Token refresh failed: ', error);
+
+    return res.status(500).json({
+      message: 'Internal server error' 
+    });
+  }
+}
+
+export function logout(_req: Request, res: Response) {
+  res.clearCookie('refreshToken', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+    path: '/api/auth',
+  });
+
+  return res.status(200).json({
+    message: 'Logged out successfully'
+  });
+}
