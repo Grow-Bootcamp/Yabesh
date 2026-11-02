@@ -7,17 +7,20 @@ import 'react-toastify/dist/ReactToastify.css'
 import './index.css'
 
 import App from './App.tsx'
+import { AuthProvider } from './context/AuthContext.tsx'
 
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-      <App />
-
-      <ToastContainer 
-        position="top-right"
-        autoClose={3000}
-      />
+      <AuthProvider>
+        <App />
+  
+        <ToastContainer 
+          position="top-right"
+          autoClose={3000}
+        />
+      </AuthProvider>
     </BrowserRouter>
   </StrictMode>,
 )
