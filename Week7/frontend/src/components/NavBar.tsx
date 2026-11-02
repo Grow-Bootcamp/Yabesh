@@ -1,10 +1,24 @@
 import { NavLink, useNavigate } from "react-router-dom";
+
 import { useAuth } from "../context/AuthContext";
 import { logoutRequest } from "../services/api";
+import { useAppSelector } from "../store/hooks";
 
 const NavBar = () => {
   const { user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
+
+
+  // read cart items from the Redux store
+  const cartItems = useAppSelector(
+    (state) => state.cart.items
+  );
+
+  // calculate the total quantity of products
+  const cartCount = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
   const handleLogout = async () => {
     try {
@@ -23,6 +37,7 @@ const NavBar = () => {
       <NavLink to="/products">Products</NavLink>
       <NavLink to="/about">About</NavLink>
       <NavLink to="/modal-demo">Modal Demo</NavLink>
+      <NavLink to="/cart">Cart ({cartCount})</NavLink>
 
       {!isAuthenticated ? (
         <NavLink to="/login">Login</NavLink>
@@ -42,6 +57,6 @@ const NavBar = () => {
       }
     </nav>
   );
-}
+};
 
 export default NavBar;

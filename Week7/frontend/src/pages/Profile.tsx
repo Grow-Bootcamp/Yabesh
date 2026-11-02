@@ -22,6 +22,9 @@ function Profile() {
         setError('');
 
         const data = await getProfile(token);
+
+        console.log('Profile API response: ', data);
+
         setProfile(data.user);
       } catch (error) {
         setError (
