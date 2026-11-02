@@ -14,6 +14,7 @@ import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import AdminDashboard from "./pages/AdminDashboard";
 import Unauthorized from "./pages/Unauthorized";
+import Cart from "./pages/Cart";
 
 
 
@@ -26,6 +27,8 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/modal-demo" element={<ModalDemo />} />
+
+        <Route path="/cart" element={<Cart />} />
 
         <Route path="/login" element={<Login />} />
         <Route path="/unauthorized" element={<Unauthorized />} />

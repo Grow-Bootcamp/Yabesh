@@ -13,6 +13,14 @@ function Home() {
       <button onClick={() => toast.error('This is an example error.')}>
         Show Error Toast
       </button>
+
+      <button onClick={() => toast.info('This is an example information.')}>
+        Show Info Toast
+      </button>
+
+      <button onClick={() => toast.warn('This is an example warning.')}>
+        Show Warn Toast
+      </button>
     </section>
   );
 }

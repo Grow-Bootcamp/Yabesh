@@ -6,9 +6,26 @@ import Modal from '../components/Modal';
 import { products as startingProducts } from '../data';
 import type { Product } from '../data'
 
+import { addToCart } from '../store/cartSlice';
+import { useAppDispatch } from '../store/hooks';
+
 function Products() {
   const [items, setItems] = useState<Product[]>(startingProducts);
   const [toDelete, setToDelete] = useState<Product | null>(null);
+
+  const dispatch = useAppDispatch();
+
+  function handleAddToCart (product: Product) {
+    dispatch (
+      addToCart({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+      })
+    );
+
+    toast.success(`${product.name} added to cart!`);
+  }
 
   function confirmDelete() {
     if (toDelete === null) return;
@@ -36,6 +53,10 @@ function Products() {
             {' - $'}
             {product.price}
             {' '}
+
+            <button onClick={() => handleAddToCart(product)}>
+              Add to Cart
+            </button>
 
             <button onClick={() => setToDelete(product)}>
               Delete
