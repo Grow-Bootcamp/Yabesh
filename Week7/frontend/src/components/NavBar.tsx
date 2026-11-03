@@ -38,6 +38,7 @@ const NavBar = () => {
       <NavLink to="/about">About</NavLink>
       <NavLink to="/modal-demo">Modal Demo</NavLink>
       <NavLink to="/cart">Cart ({cartCount})</NavLink>
+      <NavLink to="/todos">Todos</NavLink>
 
       {!isAuthenticated ? (
         <NavLink to="/login">Login</NavLink>
