@@ -15,6 +15,7 @@ import Profile from "./pages/Profile";
 import AdminDashboard from "./pages/AdminDashboard";
 import Unauthorized from "./pages/Unauthorized";
 import Cart from "./pages/Cart";
+import Todos from "./pages/Todos";
 
 
 
@@ -29,6 +30,8 @@ function App() {
         <Route path="/modal-demo" element={<ModalDemo />} />
 
         <Route path="/cart" element={<Cart />} />
+
+        <Route path="/todos" element={<Todos />} />
 
         <Route path="/login" element={<Login />} />
         <Route path="/unauthorized" element={<Unauthorized />} />

@@ -9,6 +9,7 @@ import './index.css'
 
 import App from './App.tsx'
 import { AuthProvider } from './context/AuthContext.tsx'
+import { TodoProvider } from './context/TodoContext.tsx';
 import { store } from './store/store.ts'
 
 
@@ -17,12 +18,10 @@ createRoot(document.getElementById('root')!).render(
     <Provider store={store}>
       <BrowserRouter>
         <AuthProvider>
-          <App />
-    
-          <ToastContainer 
-            position="top-right"
-            autoClose={3000}
-          />
+          <TodoProvider>
+            <App />
+            <ToastContainer position="top-right" autoClose={3000} />
+          </TodoProvider>
         </AuthProvider>
       </BrowserRouter>
     </Provider>
