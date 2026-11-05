@@ -16,6 +16,10 @@ import AdminDashboard from "./pages/AdminDashboard";
 import Unauthorized from "./pages/Unauthorized";
 import Cart from "./pages/Cart";
 import Todos from "./pages/Todos";
+import CustomHookPractice from "./pages/CustomHookPractice";
+import LocalStoragePractice from "./pages/LocalStoragePractice";
+import FetchPractice from "./pages/FetchPractice";
+import Analytics from "./pages/Analytics";
 
 
 
@@ -33,6 +37,10 @@ function App() {
 
         <Route path="/todos" element={<Todos />} />
 
+        <Route path="/custom-hooks" element={<CustomHookPractice />} />
+        <Route path="/local-storage" element={<LocalStoragePractice />} />
+        <Route path="/fetch" element={<FetchPractice />} />
+
         <Route path="/login" element={<Login />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
 
@@ -42,6 +50,8 @@ function App() {
         
         <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
           <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/analytics" element={<Analytics />} />
+
         </Route>
 
         <Route path="*" element={<NotFound />} />
