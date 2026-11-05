@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { loginRequest } from "../services/api";
 import { useAuth } from "../context/AuthContext";
@@ -12,9 +12,6 @@ function Login() {
 
   const { login } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
-
-  const from = location.state?.from?.pathname || '/profile';
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,7 +24,13 @@ function Login() {
 
       login(data.token, data.user);
 
-      navigate(from, { replace: true });
+      // redirect based on the user's role
+      if (data.user.role === 'admin') {
+        navigate('/admin', { replace: true });
+      } else {
+        navigate('/profile', { replace: true });
+      }
+      
     } catch (error) {
       setError(
         error instanceof Error ? error.message : 'Login failed',

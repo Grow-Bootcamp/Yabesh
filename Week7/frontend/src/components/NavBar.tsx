@@ -39,6 +39,9 @@ const NavBar = () => {
       <NavLink to="/modal-demo">Modal Demo</NavLink>
       <NavLink to="/cart">Cart ({cartCount})</NavLink>
       <NavLink to="/todos">Todos</NavLink>
+      <NavLink to="/custom-hooks">Custom Hooks</NavLink>
+      <NavLink to="/local-storage">Local Storage</NavLink>
+      <NavLink to="/fetch">Fetch</NavLink>
 
       {!isAuthenticated ? (
         <NavLink to="/login">Login</NavLink>
@@ -47,7 +50,10 @@ const NavBar = () => {
           <NavLink to="/profile">Profile</NavLink>
 
           {user?.role === 'admin' && (
-            <NavLink to="/admin">Admin Dashboard</NavLink>
+            <>
+              <NavLink to="/admin">Admin Dashboard</NavLink>
+              <NavLink to="/analytics">Analytics</NavLink>
+            </>
           )}
 
           <button onClick={handleLogout}>
