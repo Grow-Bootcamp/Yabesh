@@ -42,9 +42,14 @@ const NavBar = () => {
       <NavLink to="/custom-hooks">Custom Hooks</NavLink>
       <NavLink to="/local-storage">Local Storage</NavLink>
       <NavLink to="/fetch">Fetch</NavLink>
+      <NavLink to="/contact">Contact</NavLink>
+      <NavLink to="/register-wizard">MultiStepForm</NavLink>
 
       {!isAuthenticated ? (
+        <>
         <NavLink to="/login">Login</NavLink>
+        <NavLink to="/signup">Sign Up</NavLink>
+        </>
       ) : (
         <>
           <NavLink to="/profile">Profile</NavLink>

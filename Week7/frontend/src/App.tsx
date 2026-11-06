@@ -20,6 +20,16 @@ import CustomHookPractice from "./pages/CustomHookPractice";
 import LocalStoragePractice from "./pages/LocalStoragePractice";
 import FetchPractice from "./pages/FetchPractice";
 import Analytics from "./pages/Analytics";
+import Signup from "./pages/Signup";
+import ContactForm from "./pages/ContactForm";
+import RegisterWizard from "./pages/RegisterWizard";
+import MemoPractice from "./pages/MemoPractice";
+import UseMemoPractice from "./pages/UseMemoPractice";
+import UseCallbackPractice from "./pages/UseCallbackPractice";
+
+import { lazy, Suspense } from "react";
+
+const LazyPage = lazy(() => import('./pages/LazyPage'));
 
 
 
@@ -41,6 +51,7 @@ function App() {
         <Route path="/local-storage" element={<LocalStoragePractice />} />
         <Route path="/fetch" element={<FetchPractice />} />
 
+        <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/unauthorized" element={<Unauthorized />} />
 
@@ -51,8 +62,22 @@ function App() {
         <Route element={<ProtectedRoute allowedRoles={['admin']} />}>
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/analytics" element={<Analytics />} />
-
         </Route>
+
+        <Route path="/contact" element={<ContactForm />} />
+        <Route path="/register-wizard" element={<RegisterWizard />} />
+        <Route path="/memo-practice" element={<MemoPractice />} />
+        <Route path="/usememo-practice" element={<UseMemoPractice />} />
+        <Route path="/usecallback-practice" element={<UseCallbackPractice />} />
+
+        <Route 
+          path="/lazy" 
+          element={
+            <Suspense fallback={<h2>Loading page...</h2>}>
+              <LazyPage />
+            </Suspense>
+          } 
+        />
 
         <Route path="*" element={<NotFound />} />
       </Route>
